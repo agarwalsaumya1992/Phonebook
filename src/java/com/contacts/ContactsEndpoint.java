@@ -5,6 +5,7 @@
  */
 package com.contacts;
 
+import com.mypkg.JsonBuilder;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import java.io.IOException;
 import java.util.logging.Level;
@@ -19,7 +20,7 @@ public class ContactsEndpoint {
     private final static Logger LOGGER
             = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
     ContactsDAL dal;
-    ContactsBuilder builder = new ContactsBuilder();
+    JsonBuilder builder = new JsonBuilder();
 
     public ContactsEndpoint() throws IOException {
         this.dal = new ContactsDAL();

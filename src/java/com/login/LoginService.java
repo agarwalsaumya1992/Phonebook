@@ -6,9 +6,14 @@
 package com.login;
 
 
-import com.contacts.ContactsDAL;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.mypkg.JsonBuilder;
 import java.io.IOException;
+
 import java.util.Base64;
+import java.util.HashMap;
+
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -25,39 +30,53 @@ public class LoginService {
      public LoginService() throws IOException {
         this.dal = new LoginDAL();
     }
-
-    public int isUserValid(String authString) {
+     JsonBuilder builder = new JsonBuilder();
+     
+     
+    public String isUserValid(String json) throws JsonProcessingException, IOException {
        
-        Logins inputcreds=getCreds(authString);
+        Logins inputcreds=builder.jsonToObjLogin(json);
         Logins dbcreds=dal.getById(inputcreds.getLogin());
+           
         
-       if (dbcreds==null) 
-           return 2;
-       else if (dbcreds.getPass().equals(inputcreds.getPass()))
-           return 1;
-        else 
-           return 0;
+        
+         HashMap<String, String> resp = new HashMap<String, String>();
+
+   
+        
+       if (dbcreds==null) {
+           resp.put("statusCode","0");
+           resp.put("statusMsg","User not found");
+           
+           
+           
+       }
+       else if (dbcreds.getPass().equals(inputcreds.getPass())){
+           resp.put("statusCode","1");
+           resp.put("statusMsg","Login successful");
+           resp.put("loginId",String.valueOf(dbcreds.getId()));
+          
+       }
+        else {
+           resp.put("statusCode","9");
+           resp.put("statusMsg","Incorrect password");
+          
+       }
        
+       
+       
+       
+      return  builder.stringToJson(resp);
+     
 //        return decodedString.equals("admin:admin123")?1:0;
 
     }
     
-    Logins getCreds(String authString){
-        // Header is in the format "Basic 5tyc0uiDat4"
-        // We need to extract data before decoding it back to original string
-        String[] str = authString.split("\\s+");
-        String encodedString = str[1];
-         byte[] decodedBytes = Base64.getDecoder().decode(encodedString);
-
-        String decodedString = new String(decodedBytes);
+   
+    String registerUser(String json) throws IOException {
         
-        LOGGER.log(Level.INFO, "User login : {0}", decodedString);
+        Logins inputcreds=builder.jsonToObjLogin(json);
+       return dal.insertUser(inputcreds);
         
-        String[] creds = decodedString.split(":"); 
-        Logins l=new Logins();
-        l.setLogin(creds[0]);
-        l.setPass(creds[1]);
-        LOGGER.log(Level.INFO, "User login obj : {0}", l.toString());
-        return l;
     }
 }

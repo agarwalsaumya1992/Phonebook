@@ -65,7 +65,7 @@ body {
   padding: 15px;
   margin: 0 auto;
   background-color: white;
-      margin-top: 45px;
+      
 }
 .form-signin .form-signin-heading {
   margin-bottom: 10px;
@@ -94,6 +94,7 @@ body {
   border-top-right-radius: 0;
 }
 
+
 .btn-block {
    
     margin-top: 30px;
@@ -109,5 +110,23 @@ img.avatar {
     width: 40%;
     border-radius: 50%;
     
+}
+
+.nav-tabs {
+    border-bottom: none;
+    max-width: 330px;
+        
+    margin: 0 auto;
+}
+
+.nav-tabs>li {
+    
+ width: 50%;
+    }
+    
+    .nav-tabs>li>a {
+     
+     background-color:#d9edf7;
+ 
 }
 

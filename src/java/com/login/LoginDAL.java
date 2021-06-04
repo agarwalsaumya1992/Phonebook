@@ -29,17 +29,23 @@ public class LoginDAL {
  public Logins getById(String login) {
         
         SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(reader);
-        SqlSession session = sqlSessionFactory.openSession();
-
-        
-      Logins lobj = (Logins) session.selectOne("Logins.getById",login ); 
-	  
- 
-		
+        SqlSession session = sqlSessionFactory.openSession();   
+      Logins lobj = (Logins) session.selectOne("Logins.getById",login ); 	
       session.commit();
       session.close();
 			
       return lobj;
+    }
+
+    String insertUser(Logins l) {
+         SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(reader);
+        SqlSession session = sqlSessionFactory.openSession();
+
+        int i = session.insert("Logins.insertUser", l);
+
+        session.commit();
+        session.close();
+        return Integer.toString(i);
     }
     
 }

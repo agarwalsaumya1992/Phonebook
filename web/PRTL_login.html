@@ -1,20 +1,56 @@
-<div ng-controller="loginCtrl">
+<div class="container" ng-controller="loginCtrl">
     
+    <ul class="nav nav-tabs">
+  <li ><a data-toggle="tab" href="#loginform">Login</a></li>
+  <li><a data-toggle="tab" href="#registerform">Register</a></li>
+  
+</ul>
+
+<div class="tab-content">
+  <div id="loginform" class="tab-pane fade in active">
      <form class="form-signin">
          <div class="imgcontainer">
              <img src="images/avatar.png" alt="Avatar" class="avatar"></div>
         <h2 class="form-signin-heading" align="center">Log in</h2>
         <div class="input-group">
         <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-        <input ng-model="username" type="text" class="form-control" placeholder="Username" required autofocus>
+        <input ng-model="logins.login" type="text" class="form-control" placeholder="Username" required autofocus>
        </div>
         <div class="input-group">
         <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-        <input  ng-model="password"  type="password" class="form-control" placeholder="Password" required>
+        <input  ng-model="logins.pass"  type="password" class="form-control" placeholder="Password" required>
        </div>
-        <button ng-click="login()" class="btn btn-lg btn-primary btn-block" type="submit">Login</button>
+        <button ng-click="loginUser()" class="btn btn-lg btn-primary btn-block" type="submit">Login</button>
       </form>
+  </div>
+  <div id="registerform" class="tab-pane fade">
+   <form class="form-signin">
+        
+        <h2 class="form-signin-heading" align="center">New User</h2>
+         <div class="input-group">
+        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+        <input ng-model="register.uname" type="text" class="form-control" placeholder="Name" required autofocus>
+       </div>
+        <div class="input-group">
+        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+        <input ng-model="register.login" type="text" class="form-control" placeholder="Create Username" required autofocus>
+       </div>
+        <div class="input-group">
+        <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+        <input  ng-model="register.pass"  type="password" class="form-control" placeholder="Create Password" required>
+       </div>
+         <div class="input-group">
+        <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+        <input  ng-model="passwordrepeat"  type="password" class="form-control" placeholder="Confirm Password" required>
+       </div>
+        <button ng-click="registerUser()" class="btn btn-lg btn-primary btn-block" type="submit">Register</button>
+      </form>
+  </div>
+  
+</div>
     
     
+    
+  
     
 </div>
