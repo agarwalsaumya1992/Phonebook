@@ -75,8 +75,14 @@ public class LoginService {
    
     String registerUser(String json) throws IOException {
         
+        
         Logins inputcreds=builder.jsonToObjLogin(json);
-       return dal.insertUser(inputcreds);
+        
+        
+        return dal.insertUser(inputcreds);
+        
+               
+        
         
     }
 }

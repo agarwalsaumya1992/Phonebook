@@ -40,9 +40,13 @@ public class LoginDAL {
     String insertUser(Logins l) {
          SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(reader);
         SqlSession session = sqlSessionFactory.openSession();
-
-        int i = session.insert("Logins.insertUser", l);
-
+        int i;
+        
+        Logins lobj = (Logins) session.selectOne("Logins.getById",l ); 
+        if (lobj==null)
+         i= session.insert("Logins.insertUser", l);
+        else 
+            i=0;
         session.commit();
         session.close();
         return Integer.toString(i);

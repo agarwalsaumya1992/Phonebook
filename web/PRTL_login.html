@@ -1,6 +1,6 @@
 <div class="container" ng-controller="loginCtrl">
     
-    <ul class="nav nav-tabs">
+    <ul class="nav nav-tabs ">
   <li ><a data-toggle="tab" href="#loginform">Login</a></li>
   <li><a data-toggle="tab" href="#registerform">Register</a></li>
   
@@ -20,11 +20,14 @@
         <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
         <input  ng-model="logins.pass"  type="password" class="form-control" placeholder="Password" required>
        </div>
+         <div class="error" >
+                     {{loginerror}} 
+                  </div>
         <button ng-click="loginUser()" class="btn btn-lg btn-primary btn-block" type="submit">Login</button>
       </form>
   </div>
   <div id="registerform" class="tab-pane fade">
-   <form class="form-signin">
+   <form  class="form-signin">
         
         <h2 class="form-signin-heading" align="center">New User</h2>
          <div class="input-group">
@@ -41,12 +44,17 @@
        </div>
          <div class="input-group">
         <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-        <input  ng-model="passwordrepeat"  type="password" class="form-control" placeholder="Confirm Password" required>
+        <input  ng-model="passwordrepeat" ng-change="myValidation()" type="password" class="form-control" placeholder="Confirm Password" required>
        </div>
-        <button ng-click="registerUser()" class="btn btn-lg btn-primary btn-block" type="submit">Register</button>
+         <div class="error" >
+                      {{registererror}}
+                     
+                  </div>
+        <button ng-click="registerUser()" ng-disabled="registerform.$invalid"  class="btn btn-lg btn-primary btn-block" type="submit">Register</button>
       </form>
   </div>
   
+   
 </div>
     
     

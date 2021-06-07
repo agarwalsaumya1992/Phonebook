@@ -28,8 +28,8 @@ controllers.controller('loginCtrl', function($scope,$base64,$rootScope,$resource
            }
             else
             {
-              
-                swal("Error", data["statusMsg"], "warning");
+                $scope.loginerror=data["statusMsg"];
+//                swal("Error", data["statusMsg"], "warning");
                 $rootScope.isValidUser=false;
             }
             });
@@ -50,17 +50,17 @@ controllers.controller('loginCtrl', function($scope,$base64,$rootScope,$resource
             if(data["0"]=="1")
             {
             
-             swal("Saved", "Your Contact was saved successfully", "success");
+             swal("Saved", "User created Successfully. Login with your credentials now", "success");
             $scope.reset();
              }
             else
-            
-            swal("Error", "There was and error in saving your contact", "warning");
+            $scope.registererror="There was and error in saving your contact";
+//            swal("Error", "There was and error in saving your contact", "warning");
             });
             
          }; 
         
-       
+    
         
         });  
       
